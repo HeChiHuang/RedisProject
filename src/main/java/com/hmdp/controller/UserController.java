@@ -40,7 +40,7 @@ public class UserController {
     @PostMapping("code")
     public Result sendCode(@RequestParam("phone") String phone, HttpSession session) {
         // TODO 发送短信验证码并保存验证码
-
+        System.out.println("成功进入 Controller 方法，手机号：" + phone);
         return userService.sendPhone(phone,session);
     }
 
@@ -68,6 +68,9 @@ public class UserController {
     public Result me(){
         // TODO 获取当前登录的用户并返回
         UserDTO user = UserHolder.getUser();
+        System.out.println("获取的用户是：" + user);
+        log.debug("获取的用户是：" + user);
+        System.out.println("【Controller】线程ID: " + Thread.currentThread().getId() + "，获取用户: " + UserHolder.getUser());
         return Result.ok(user);
     }
 
